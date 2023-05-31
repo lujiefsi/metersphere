@@ -75,6 +75,7 @@ public class WorkspaceController {
 
     @PostMapping("/member/update")
     @MsAuditLog(module = OperLogModule.WORKSPACE_MEMBER, type = OperLogConstants.UPDATE, beforeEvent = "#msClass.getLogDetails(#memberDTO)", content = "#msClass.getLogDetails(#memberDTO)", msClass = WorkspaceService.class)
+    @RequiresPermissions(PermissionConstants.SYSTEM_WORKSPACE_READ_EDIT)
     public void updateOrgMember(@RequestBody WorkspaceMemberDTO memberDTO) {
         workspaceService.updateWorkspaceMember(memberDTO);
     }
